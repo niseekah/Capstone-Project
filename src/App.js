@@ -9,7 +9,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 function App() {
   return (
     <div className="App">
-      <React.Fragment>
+
         <Grid class = "space">
         <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
           <Button>1</Button>
@@ -41,7 +41,6 @@ function App() {
         < Button>+</Button>
         </ButtonGroup>
         </Grid>
-      </React.Fragment>
 
 
     </div>
