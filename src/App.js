@@ -47,14 +47,16 @@ class App extends React.Component{
     })
   }
 
+// The result() function is created to display the result number
   async result()
   {
-    console.log("num1 equals " + Number(this.state.num1));
-    console.log("operation equals " + this.state.currentOperation);
+    // using an else/if statements to check if currentOperation has a certain math operator
+    // then use that math operator to get the result number and display the number.
     if(this.state.currentOperation == "+")
     {
       await this.setState({
         answer: this.state.storeNum + this.state.num1,
+        // num1: 0
       })
       await this.setState({
         display : this.state.display + " = " + this.state.answer
@@ -93,6 +95,13 @@ class App extends React.Component{
     }
     
   }
+// The clear() function is created to clear the displayed screen
+  clear ()
+  {
+    this.setState({
+      display: ""
+    })
+  }
 
   render()
   {
@@ -130,9 +139,9 @@ class App extends React.Component{
           <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick = {() => {this.checkNumber(0);}}>0</Button>
+            <Button onClick = {() => {this.clear();}}>C</Button>
             < Button onClick = {() => {this.mathOperators("+");}}>+</Button>
             < Button onClick = {() => {this.result();}}>=</Button>
-            <Button onClick = {() => {;}}>Clear</Button>
           </ButtonGroup>
           </Grid>
 
