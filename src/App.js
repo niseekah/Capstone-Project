@@ -14,7 +14,8 @@ class App extends React.Component{
         num1: 0,
         storeNum: 0,
         currentOperation: "",
-        display: ""
+        display: "",
+        answer: 0
     };
       }
   // CheckNumber() function add all numbers press to form one digit number
@@ -22,7 +23,7 @@ class App extends React.Component{
   async checkNumber(number)
   {
 
-    // On line 27 this.setState has a await method next to it so when line 27-28 is finish
+    // On line 27 this.setState has an await method next to it so when line 27-28 is finish
     // then it can display the number that was pressed by the button
     await this.setState({
       num1: 10 * this.state.num1 + number});
@@ -42,6 +43,22 @@ class App extends React.Component{
       display: this.state.display + this.state.currentOperation,
       num1: 0
     });
+  }
+
+  async result()
+  {
+    console.log("num1 equals " + Number(this.state.num1));
+    console.log("operation equals " + this.state.currentOperation);
+    if(this.state.currentOperation == "+")
+    {
+      await this.setState({
+        answer: this.state.storeNum + this.state.num1,
+      })
+      this.setState({
+        display : this.state.display + this.state.answer
+      })
+    }
+    
   }
 
   render()
@@ -80,7 +97,8 @@ class App extends React.Component{
           <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick = {() => {this.checkNumber(0);}}>0</Button>
-          < Button onClick = {() => {this.checkNumber("+");}}>+</Button>
+            < Button onClick = {() => {this.checkNumber("+");}}>+</Button>
+            < Button onClick = {() => {this.result();}}>=</Button>
           </ButtonGroup>
           </Grid>
 
