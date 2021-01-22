@@ -18,17 +18,19 @@ class App extends React.Component{
     };
       }
   // CheckNumber() function add all numbers press to form one digit number
-  checkNumber(number)
+  // The function has async because we want to use the await method 
+  async checkNumber(number)
   {
 
-    // this.setState is updated to give a new number
-    // every time you press a numnber button
-    this.setState({
+    // On line 27 this.setState has a await method next to it so when line 27-28 is finish
+    // then it can display the number that was pressed by the button
+    await this.setState({
       num1: 10 * this.state.num1 + number});
+    // display: this.state.display + number helps keep the type a string
+    // so that we don't run into errors
     this.setState({
-      display: this.state.num1
+      display: this.state.display + number
     });
-    //console.log(this.state.num1);
   }
 
   //mathOperators() stores in the current num1 number and reset num1 to 0. 
@@ -37,7 +39,7 @@ class App extends React.Component{
     this.setState({
       storeNum: this.state.num1,
       currentOperation: opera,
-      display: this.state.currentOperation,
+      display: this.state.display + this.state.currentOperation,
       num1: 0
     });
   }
@@ -55,7 +57,7 @@ class App extends React.Component{
             <Button onClick = {() => {this.checkNumber(1);}}>1</Button>
             <Button onClick = {() => {this.checkNumber(2);}}>2</Button>
             <Button onClick = {() => {this.checkNumber(3);}}>3</Button>
-            <Button>/</Button>
+            <Button onClick = {() => {this.checkNumber("/");}}>/</Button>
           </ButtonGroup>
           </Grid>
 
@@ -64,7 +66,7 @@ class App extends React.Component{
             <Button onClick = {() => {this.checkNumber(4);}}>4</Button>
             <Button onClick = {() => {this.checkNumber(5);}}>5</Button>
             <Button onClick = {() => {this.checkNumber(6);}}>6</Button>
-            <Button>*</Button>
+            <Button onClick = {() => {this.checkNumber("*");}}>*</Button>
           </ButtonGroup>
           </Grid>
           <Grid class = "space">
@@ -72,7 +74,7 @@ class App extends React.Component{
             <Button onClick = {() => {this.checkNumber(7);}}>7</Button>
             <Button onClick = {() => {this.checkNumber(8);}}>8</Button>
             <Button onClick = {() => {this.checkNumber(9);}}>9</Button>
-            <Button>--</Button>
+            <Button onClick = {() => {this.checkNumber("--");}}>--</Button>
           </ButtonGroup>
           </Grid>
           <Grid class = "space">

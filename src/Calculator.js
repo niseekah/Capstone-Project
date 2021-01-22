@@ -13,16 +13,16 @@ add = add + 12
 add = 35
 */
 
-function getFormattedNumber(num)
-{
-    if(num=="-")
-    {
-		return "";
-	}
-	var n = Number(num);
-	var value = n.toLocaleString("en");
-	return value;
-}
+// function getFormattedNumber(num)
+// {
+//     if(num=="-")
+//     {
+// 		return "";
+// 	}
+// 	var n = Number(num);
+// 	var value = n.toLocaleString("en");
+// 	return value;
+// }
 
 function reverseNumberFormat(num){
 	return Number(num.replace(/,/g,''));
