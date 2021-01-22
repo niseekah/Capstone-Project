@@ -6,45 +6,86 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 
 
-function App() {
-  return (
-    <div className="App">
 
-        <Grid class = "space">
-        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-          <Button>1</Button>
-          <Button>2</Button>
-          <Button>3</Button>
-          <Button>/</Button>
-        </ButtonGroup>
-        </Grid>
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+        num1: 0,
+        storeNum: 0,
+        currentOperation: "",
+        display: ""
+    };
+      }
+  // CheckNumber() function add all numbers press to form one digit number
+  checkNumber(number)
+  {
 
-        <Grid class = "space">
-        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-          <Button>4</Button>
-          <Button>5</Button>
-          <Button>6</Button>
-          <Button>*</Button>
-        </ButtonGroup>
-        </Grid>
-        <Grid class = "space">
-        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-          <Button>7</Button>
-          <Button>8</Button>
-          <Button>9</Button>
-          <Button>--</Button>
-        </ButtonGroup>
-        </Grid>
-        <Grid class = "space">
-        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-          <Button>0</Button>
-        < Button>+</Button>
-        </ButtonGroup>
-        </Grid>
+    // this.setState is updated to give a new number
+    // every time you press a numnber button
+    this.setState({
+      num1: 10 * this.state.num1 + number});
+    this.setState({
+      display: this.state.num1
+    });
+    //console.log(this.state.num1);
+  }
+
+  //mathOperators() stores in the current num1 number and reset num1 to 0. 
+  mathOperators(opera)
+  {
+    this.setState({
+      storeNum: this.state.num1,
+      currentOperation: opera,
+      display: this.state.currentOperation,
+      num1: 0
+    });
+  }
+
+  render()
+  {
+    return (
+      
+      <div className="App">
+          <div>
+            {this.state.display}
+          </div>
+          <Grid class = "space">
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button onClick = {() => {this.checkNumber(1);}}>1</Button>
+            <Button onClick = {() => {this.checkNumber(2);}}>2</Button>
+            <Button onClick = {() => {this.checkNumber(3);}}>3</Button>
+            <Button>/</Button>
+          </ButtonGroup>
+          </Grid>
+
+          <Grid class = "space">
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button onClick = {() => {this.checkNumber(4);}}>4</Button>
+            <Button onClick = {() => {this.checkNumber(5);}}>5</Button>
+            <Button onClick = {() => {this.checkNumber(6);}}>6</Button>
+            <Button>*</Button>
+          </ButtonGroup>
+          </Grid>
+          <Grid class = "space">
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button onClick = {() => {this.checkNumber(7);}}>7</Button>
+            <Button onClick = {() => {this.checkNumber(8);}}>8</Button>
+            <Button onClick = {() => {this.checkNumber(9);}}>9</Button>
+            <Button>--</Button>
+          </ButtonGroup>
+          </Grid>
+          <Grid class = "space">
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button onClick = {() => {this.checkNumber(0);}}>0</Button>
+          < Button onClick = {() => {this.checkNumber("+");}}>+</Button>
+          </ButtonGroup>
+          </Grid>
 
 
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
