@@ -35,14 +35,16 @@ class App extends React.Component{
   }
 
   //mathOperators() stores in the current num1 number and reset num1 to 0. 
-  mathOperators(opera)
+  async mathOperators(opera)
   {
-    this.setState({
+    await this.setState({
       storeNum: this.state.num1,
       currentOperation: opera,
-      display: this.state.display + this.state.currentOperation,
       num1: 0
     });
+    await this.setState({
+      display: this.state.display + this.state.currentOperation
+    })
   }
 
   async result()
@@ -54,9 +56,40 @@ class App extends React.Component{
       await this.setState({
         answer: this.state.storeNum + this.state.num1,
       })
-      this.setState({
-        display : this.state.display + this.state.answer
+      await this.setState({
+        display : this.state.display + " = " + this.state.answer
       })
+    }
+    else if(this.state.currentOperation == "--")
+    {
+      await this.setState({
+        answer: this.state.storeNum - this.state.num1,
+      })
+      await this.setState({
+        display : this.state.display + " = " + this.state.answer
+      })
+    }
+    else if(this.state.currentOperation == "*")
+    {
+      await this.setState({
+        answer: this.state.storeNum * this.state.num1,
+      })
+      await this.setState({
+        display : this.state.display + " = " + this.state.answer
+      })
+    }
+    else if(this.state.currentOperation == "/")
+    {
+      await this.setState({
+        answer: this.state.storeNum / this.state.num1,
+      })
+      await this.setState({
+        display : this.state.display + " = " + this.state.answer
+      })
+    }
+    else
+    {
+      return "Err"
     }
     
   }
@@ -74,7 +107,7 @@ class App extends React.Component{
             <Button onClick = {() => {this.checkNumber(1);}}>1</Button>
             <Button onClick = {() => {this.checkNumber(2);}}>2</Button>
             <Button onClick = {() => {this.checkNumber(3);}}>3</Button>
-            <Button onClick = {() => {this.checkNumber("/");}}>/</Button>
+            <Button onClick = {() => {this.mathOperators("/");}}>/</Button>
           </ButtonGroup>
           </Grid>
 
@@ -83,7 +116,7 @@ class App extends React.Component{
             <Button onClick = {() => {this.checkNumber(4);}}>4</Button>
             <Button onClick = {() => {this.checkNumber(5);}}>5</Button>
             <Button onClick = {() => {this.checkNumber(6);}}>6</Button>
-            <Button onClick = {() => {this.checkNumber("*");}}>*</Button>
+            <Button onClick = {() => {this.mathOperators("*");}}>*</Button>
           </ButtonGroup>
           </Grid>
           <Grid class = "space">
@@ -91,14 +124,15 @@ class App extends React.Component{
             <Button onClick = {() => {this.checkNumber(7);}}>7</Button>
             <Button onClick = {() => {this.checkNumber(8);}}>8</Button>
             <Button onClick = {() => {this.checkNumber(9);}}>9</Button>
-            <Button onClick = {() => {this.checkNumber("--");}}>--</Button>
+            <Button onClick = {() => {this.mathOperators("--");}}>--</Button>
           </ButtonGroup>
           </Grid>
           <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick = {() => {this.checkNumber(0);}}>0</Button>
-            < Button onClick = {() => {this.checkNumber("+");}}>+</Button>
+            < Button onClick = {() => {this.mathOperators("+");}}>+</Button>
             < Button onClick = {() => {this.result();}}>=</Button>
+            <Button onClick = {() => {;}}>Clear</Button>
           </ButtonGroup>
           </Grid>
 
