@@ -20,14 +20,16 @@ class App extends React.Component {
   }
   // CheckNumber() function add all numbers press to form one digit number
   checkNumber(number) {
-
+  // 
     if (this.state.currentOperation === "sin") {
       this.setState({
         num1: 10 * this.state.num1 + number,
-        //display: "sin(" + this.state.num1 + ")"
-      })
+      },() => {this.setState({display: "sin(" + this.state.num1 + ")"})})
+    // A callback is a function passed as an argument to another function.
+    // I used the callback fuction to updated display after num1
     }
-    else {
+    else 
+    {
       this.setState({
         display: this.state.display + number,
         num1: 10 * this.state.num1 + number
@@ -47,7 +49,7 @@ class App extends React.Component {
   sin() {
     this.setState({
       currentOperation: "sin",
-      display: this.state.display + this.state.currentOperation
+      display: "sin"
     })
   }
   cosine() {
@@ -90,11 +92,11 @@ class App extends React.Component {
       })
     }
     else if (this.state.currentOperation === "sin") {
-      console.log(this.state.num1)
       this.setState({
         answer: Math.sin(this.state.num1),
-        display: this.state.display + " = " + this.state.answer
-      })
+        
+      },() => {this.setState({display: this.state.display + " = " + this.state.answer})})
+      
     }
     else {
 
