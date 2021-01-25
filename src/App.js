@@ -81,12 +81,12 @@ class App extends React.Component{
         display : this.state.display + " = " + this.state.answer
       })
     }
+
     else if(this.state.currentOperation === "/")
     {
       if(this.state.num1 === 0){
         return "undefined";
       }
-
       await this.setState({
         answer: this.state.storeNum / this.state.num1,
       })
@@ -96,6 +96,7 @@ class App extends React.Component{
     }
     else
     {
+
        console.log("Err");
     }
     
@@ -104,7 +105,11 @@ class App extends React.Component{
   clear ()
   {
     this.setState({
-      display: ""
+      num1: 0,
+      storeNum: 0,
+      currentOperation: "",
+      display: "",
+      answer: 0
     })
   }
 
@@ -118,6 +123,11 @@ class App extends React.Component{
               {this.state.display}
             </Box>
           </Typography>
+          <Grid class = "space">
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button onClick = {() => { ;}}>SIN</Button>
+          </ButtonGroup>
+          </Grid>
           <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick = {() => {this.checkNumber(1);}}>1</Button>
