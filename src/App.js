@@ -99,7 +99,11 @@ class App extends React.Component{
   clear ()
   {
     this.setState({
-      display: ""
+      num1: 0,
+      storeNum: 0,
+      currentOperation: "",
+      display: "",
+      answer: 0
     })
   }
 
@@ -111,6 +115,11 @@ class App extends React.Component{
           <div>
             {this.state.display}
           </div>
+          <Grid class = "space">
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button onClick = {() => { ;}}>SIN</Button>
+          </ButtonGroup>
+          </Grid>
           <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick = {() => {this.checkNumber(1);}}>1</Button>
