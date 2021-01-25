@@ -21,64 +21,54 @@ class App extends React.Component{
       }
   // CheckNumber() function add all numbers press to form one digit number
   // The function has async because we want to use the await method 
-  async checkNumber(number)
+    checkNumber(number)
   {
 
     // On line 27 this.setState has an await method next to it so when line 27-28 is finish
     // then it can display the number that was pressed by the button
-    await this.setState({
+      this.setState({
+	  display: this.state.display + number,
       num1: 10 * this.state.num1 + number});
     // display: this.state.display + number helps keep the type a string
     // so that we don't run into errors
-    this.setState({
-      display: this.state.display + number
-    });
   }
 
   //mathOperators() stores in the current num1 number and reset num1 to 0. 
-  async mathOperators(opera)
+  mathOperators(opera)
   {
-    await this.setState({
+      this.setState({
+	  display: this.state.display + opera,
       storeNum: this.state.num1,
       currentOperation: opera,
       num1: 0
     });
-    await this.setState({
-      display: this.state.display + this.state.currentOperation
-    })
   }
 
 // The result() function is created to display the result number
-  async result()
-  {
+  result()
+    {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
     if(this.state.currentOperation === "+")
     {
-      await this.setState({
-        answer: this.state.storeNum + this.state.num1,
-        // num1: 0
-      })
-      await this.setState({
-        display : this.state.display + " = " + this.state.answer
+      this.setState({
+          answer: this.state.storeNum + this.state.num1,
+          display : this.state.display + " = " + this.state.storeNum + this.state.num1
+	  // num1: 0
       })
     }
     else if(this.state.currentOperation === "--")
     {
-      await this.setState({
-        answer: this.state.storeNum - this.state.num1,
-      })
-      await this.setState({
-        display : this.state.display + " = " + this.state.answer
+      this.setState({
+          answer: this.state.storeNum - this.state.num1,
+	  display : this.state.display + " = " + this.state.storeNum - this.state.num1
       })
     }
     else if(this.state.currentOperation === "*")
     {
-      await this.setState({
-        answer: this.state.storeNum * this.state.num1,
-      })
-      await this.setState({
-        display : this.state.display + " = " + this.state.answer
+      this.setState({
+          answer: this.state.storeNum * this.state.num1,
+	  display : this.state.display + " = " + this.state.storeNum * this.state.num1
       })
     }
 
@@ -87,11 +77,9 @@ class App extends React.Component{
       if(this.state.num1 === 0){
         return "undefined";
       }
-      await this.setState({
-        answer: this.state.storeNum / this.state.num1,
-      })
-      await this.setState({
-        display : this.state.display + " = " + this.state.answer
+      this.setState({
+          answer: this.state.storeNum / this.state.num1,
+	  display : this.state.display + " = " + this.state.storeNum / this.state.num1
       })
     }
     else
