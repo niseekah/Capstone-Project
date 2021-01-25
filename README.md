@@ -1,6 +1,6 @@
 # Creating a Calculator
 
-## Purpose Statement
+## Purpose 
 For the user to enter in two or more numbers to either add, subtract, multiply or divide to get a result number.
 
 ## High level features / user stories
