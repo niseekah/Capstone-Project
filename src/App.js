@@ -3,7 +3,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 
 
@@ -52,7 +53,7 @@ class App extends React.Component{
   {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
-    if(this.state.currentOperation == "+")
+    if(this.state.currentOperation === "+")
     {
       await this.setState({
         answer: this.state.storeNum + this.state.num1,
@@ -62,7 +63,7 @@ class App extends React.Component{
         display : this.state.display + " = " + this.state.answer
       })
     }
-    else if(this.state.currentOperation == "--")
+    else if(this.state.currentOperation === "--")
     {
       await this.setState({
         answer: this.state.storeNum - this.state.num1,
@@ -71,7 +72,7 @@ class App extends React.Component{
         display : this.state.display + " = " + this.state.answer
       })
     }
-    else if(this.state.currentOperation == "*")
+    else if(this.state.currentOperation === "*")
     {
       await this.setState({
         answer: this.state.storeNum * this.state.num1,
@@ -80,8 +81,12 @@ class App extends React.Component{
         display : this.state.display + " = " + this.state.answer
       })
     }
-    else if(this.state.currentOperation == "/")
+
+    else if(this.state.currentOperation === "/")
     {
+      if(this.state.num1 === 0){
+        return "undefined";
+      }
       await this.setState({
         answer: this.state.storeNum / this.state.num1,
       })
@@ -91,7 +96,8 @@ class App extends React.Component{
     }
     else
     {
-      return "Err"
+
+       console.log("Err");
     }
     
   }
@@ -112,9 +118,11 @@ class App extends React.Component{
     return (
       
       <div className="App">
-          <div>
-            {this.state.display}
-          </div>
+          <Typography class = "displayField">
+            <Box>
+              {this.state.display}
+            </Box>
+          </Typography>
           <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick = {() => { ;}}>SIN</Button>
