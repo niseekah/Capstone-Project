@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,30 +20,29 @@ class App extends React.Component {
   }
   // CheckNumber() function add all numbers press to form one digit number
   // The function has async because we want to use the await method 
-  async checkNumber(number) {
+
+    checkNumber(number)
+  {
 
     // On line 27 this.setState has an await method next to it so when line 27-28 is finish
     // then it can display the number that was pressed by the button
-    await this.setState({
-      num1: 10 * this.state.num1 + number
-    });
+      this.setState({
+	  display: this.state.display + number,
+      num1: 10 * this.state.num1 + number});
     // display: this.state.display + number helps keep the type a string
     // so that we don't run into errors
-    this.setState({
-      display: this.state.display + number
-    });
   }
 
   //mathOperators() stores in the current num1 number and reset num1 to 0. 
-  async mathOperators(opera) {
-    await this.setState({
+
+  mathOperators(opera)
+  {
+      this.setState({
+	  display: this.state.display + opera,
       storeNum: this.state.num1,
       currentOperation: opera,
       num1: 0
     });
-    await this.setState({
-      display: this.state.display + this.state.currentOperation
-    })
   }
   async sin() {
     Math.sin()
@@ -55,59 +53,48 @@ class App extends React.Component {
   async tangent() {
     Math.tan()
   }
-
-  // The result() function is created to display the result number
-  async result() {
+// The result() function is created to display the result number
+  result()
+    {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
-    if (this.state.currentOperation === "+") {
-      await this.setState({
-        answer: this.state.storeNum + this.state.num1,
-        // num1: 0
-      })
-      await this.setState({
-        display: this.state.display + " = " + this.state.answer
-      })
-    }
-    else if (this.state.currentOperation === "--") {
-      await this.setState({
-        answer: this.state.storeNum - this.state.num1,
-      })
-      await this.setState({
-        display: this.state.display + " = " + this.state.answer
+    if(this.state.currentOperation === "+")
+    {
+      this.setState({
+          answer: this.state.storeNum + this.state.num1,
+          display : this.state.display + " = " + this.state.storeNum + this.state.num1
+	  // num1: 0
       })
     }
-    else if (this.state.currentOperation === "cos") {
-      await this.setState({
-        answer: this.state.storeNum - this.state.num1,
-      })
-      await this.setState({
-        display: this.state.display + " = " + this.state.answer
+    else if(this.state.currentOperation === "--")
+    {
+      this.setState({
+          answer: this.state.storeNum - this.state.num1,
+	  display : this.state.display + " = " + this.state.storeNum - this.state.num1
       })
     }
-    else if (this.state.currentOperation === "*") {
-      await this.setState({
-        answer: this.state.storeNum * this.state.num1,
-      })
-      await this.setState({
-        display: this.state.display + " = " + this.state.answer
+    else if(this.state.currentOperation === "*")
+    {
+      this.setState({
+          answer: this.state.storeNum * this.state.num1,
+	  display : this.state.display + " = " + this.state.storeNum * this.state.num1
       })
     }
 
-    else if (this.state.currentOperation === "/") {
-      if (this.state.num1 === 0) {
+    else if(this.state.currentOperation === "/")
+    {
+      if(this.state.num1 === 0){
         return "undefined";
       }
-      await this.setState({
-        answer: this.state.storeNum / this.state.num1,
-      })
-      await this.setState({
-        display: this.state.display + " = " + this.state.answer
+      this.setState({
+          answer: this.state.storeNum / this.state.num1,
+	  display : this.state.display + " = " + this.state.storeNum / this.state.num1
       })
     }
-    else {
+    else
+    {
 
-      console.log("Err");
+       console.log("Err");
     }
 
   }
@@ -124,16 +111,13 @@ class App extends React.Component {
 
   render() {
     return (
-
       <div className="App">
-        <Typography class="displayField">
-          <Box>
-            {this.state.display}
-          </Box>
-        </Typography>
-        <Grid class="space">
-        </Grid>
-        <Grid class="space">
+          <Typography class = "displayField">
+            <Box>
+              {this.state.display}
+            </Box>
+          </Typography>
+          <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick={() => { this.checkNumber(1); }}>1</Button>
             <Button onClick={() => { this.checkNumber(2); }}>2</Button>
