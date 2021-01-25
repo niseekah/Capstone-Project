@@ -22,7 +22,6 @@ class App extends React.Component{
   // The function has async because we want to use the await method 
   async checkNumber(number)
   {
-
     // On line 27 this.setState has an await method next to it so when line 27-28 is finish
     // then it can display the number that was pressed by the button
     await this.setState({
@@ -95,6 +94,17 @@ class App extends React.Component{
     }
     
   }
+  async sin()
+  {
+    await this.setState({
+      display: "sin(" + this.state.num1 +")"
+    })
+    this.setState({
+      answer: Math.sin(this.state.num1),
+      display: this.state.display + this.state.answer
+    })
+    
+  }
 // The clear() function is created to clear the displayed screen
   clear ()
   {
@@ -117,7 +127,7 @@ class App extends React.Component{
           </div>
           <Grid class = "space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick = {() => { ;}}>SIN</Button>
+            <Button onClick = {() => {this.sin();}}>SIN</Button>
           </ButtonGroup>
           </Grid>
           <Grid class = "space">
