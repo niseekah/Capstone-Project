@@ -20,11 +20,19 @@ class App extends React.Component {
   }
   // CheckNumber() function add all numbers press to form one digit number
   checkNumber(number) {
-  
-    this.setState({
-      display: this.state.display + number,
-      num1: 10 * this.state.num1 + number
-    });
+
+    if (this.state.currentOperation === "sin") {
+      this.setState({
+        num1: 10 * this.state.num1 + number,
+        //display: "sin(" + this.state.num1 + ")"
+      })
+    }
+    else {
+      this.setState({
+        display: this.state.display + number,
+        num1: 10 * this.state.num1 + number
+      });
+    }
   }
 
   //mathOperators() stores in the current num1 number and reset num1 to 0. 
@@ -36,15 +44,11 @@ class App extends React.Component {
       num1: 0
     });
   }
-  async sin() {
-    await this.setState({
-      display: "sin(" + this.state.num1 + ")"
-    })
+  sin() {
     this.setState({
-      answer: Math.sin(this.state.num1),
-      display: this.state.display + this.state.answer
+      currentOperation: "sin",
+      display: this.state.display + this.state.currentOperation
     })
-
   }
   cosine() {
     console.log(Math.cos(this.state.num1))
@@ -52,28 +56,27 @@ class App extends React.Component {
   async tangent() {
     Math.tan()
   }
-// The result() function is created to display the result number
-  result()
-    {
+  // The result() function is created to display the result number
+  result() {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
     if (this.state.currentOperation === "+") {
       this.setState({
         answer: this.state.storeNum + this.state.num1,
-        display: this.state.display + " = " + this.state.storeNum + this.state.num1
+        display: this.state.display + " = " + this.state.answer
         // num1: 0
       })
     }
     else if (this.state.currentOperation === "--") {
       this.setState({
         answer: this.state.storeNum - this.state.num1,
-        display: this.state.display + " = " + this.state.storeNum - this.state.num1
+        display: this.state.display + " = " + this.state.answer
       })
     }
     else if (this.state.currentOperation === "*") {
       this.setState({
         answer: this.state.storeNum * this.state.num1,
-        display: this.state.display + " = " + this.state.storeNum * this.state.num1
+        display: this.state.display + " = " + this.state.answer
       })
     }
 
@@ -83,7 +86,14 @@ class App extends React.Component {
       }
       this.setState({
         answer: this.state.storeNum / this.state.num1,
-        display: this.state.display + " = " + this.state.storeNum / this.state.num1
+        display: this.state.display + " = " + this.state.answer
+      })
+    }
+    else if (this.state.currentOperation === "sin") {
+      console.log(this.state.num1)
+      this.setState({
+        answer: Math.sin(this.state.num1),
+        display: this.state.display + " = " + this.state.answer
       })
     }
     else {
@@ -92,7 +102,7 @@ class App extends React.Component {
     }
 
   }
-  
+
   // The clear() function is created to clear the displayed screen
   clear() {
     this.setState({
@@ -147,8 +157,8 @@ class App extends React.Component {
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.sin(); }}>SIN</Button>
-            < Button onClick={() => {this.cosine(); }}>COS</Button>
+            <Button onClick={() => { this.sin();}}>SIN</Button>
+            < Button onClick={() => { this.cosine(); }}>COS</Button>
           </ButtonGroup>
         </Grid>
 
