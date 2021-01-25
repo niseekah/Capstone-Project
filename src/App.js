@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -37,9 +36,25 @@ class App extends React.Component {
       num1: 0
     });
   }
+  async sin() {
+    await this.setState({
+      display: "sin(" + this.state.num1 + ")"
+    })
+    this.setState({
+      answer: Math.sin(this.state.num1),
+      display: this.state.display + this.state.answer
+    })
 
-  // The result() function is created to display the result number
-  result() {
+  }
+  cosine() {
+    console.log(Math.cos(this.state.num1))
+  }
+  async tangent() {
+    Math.tan()
+  }
+// The result() function is created to display the result number
+  result()
+    {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
     if (this.state.currentOperation === "+") {
@@ -77,16 +92,7 @@ class App extends React.Component {
     }
 
   }
-  async sin() {
-    await this.setState({
-      display: "sin(" + this.state.num1 + ")"
-    })
-    this.setState({
-      answer: Math.sin(this.state.num1),
-      display: this.state.display + this.state.answer
-    })
-
-  }
+  
   // The clear() function is created to clear the displayed screen
   clear() {
     this.setState({
@@ -100,18 +106,12 @@ class App extends React.Component {
 
   render() {
     return (
-
       <div className="App">
         <Typography class="displayField">
           <Box>
             {this.state.display}
           </Box>
         </Typography>
-        <Grid class="space">
-          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.sin(); }}>SIN</Button>
-          </ButtonGroup>
-        </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick={() => { this.checkNumber(1); }}>1</Button>
@@ -145,7 +145,12 @@ class App extends React.Component {
             < Button onClick={() => { this.result(); }}>=</Button>
           </ButtonGroup>
         </Grid>
-
+        <Grid class="space">
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button onClick={() => { this.sin(); }}>SIN</Button>
+            < Button onClick={() => {this.cosine(); }}>COS</Button>
+          </ButtonGroup>
+        </Grid>
 
       </div>
     );
