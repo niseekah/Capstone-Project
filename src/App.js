@@ -56,8 +56,14 @@ class App extends React.Component {
     })
     
   async tangent() {
-    Math.tan()
-  }
+      await this.setState({
+        display: "tan(" + this.state.num1 + ")"
+      })
+      this.setState({
+        answer: Math.tan(this.state.num1),
+        display: this.state.display + this.state.answer
+      })
+  
 // The result() function is created to display the result number
   result()
     {
