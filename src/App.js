@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -65,21 +66,17 @@ class App extends React.Component {
     if (this.state.currentOperation === "+") {
       this.setState({
         answer: this.state.storeNum + this.state.num1,
-        display: this.state.display + " = " + this.state.answer
-        // num1: 0
-      })
+      }, () => {this.setState({display: this.state.display + " = " + this.state.answer})})
     }
-    else if (this.state.currentOperation === "--") {
+    else if (this.state.currentOperation === "-") {
       this.setState({
         answer: this.state.storeNum - this.state.num1,
-        display: this.state.display + " = " + this.state.answer
-      })
+      }, () => {this.setState({display: this.state.display + " = " + this.state.answer})})
     }
     else if (this.state.currentOperation === "*") {
       this.setState({
         answer: this.state.storeNum * this.state.num1,
-        display: this.state.display + " = " + this.state.answer
-      })
+      }, () => {this.setState({display: this.state.display + " = " + this.state.answer})})
     }
 
     else if (this.state.currentOperation === "/") {
@@ -88,8 +85,7 @@ class App extends React.Component {
       }
       this.setState({
         answer: this.state.storeNum / this.state.num1,
-        display: this.state.display + " = " + this.state.answer
-      })
+      }, () => {this.setState({display: this.state.display + " = " + this.state.answer})})
     }
     else if (this.state.currentOperation === "sin") {
       this.setState({
@@ -126,44 +122,43 @@ class App extends React.Component {
         </Typography>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.checkNumber(1); }}>1</Button>
-            <Button onClick={() => { this.checkNumber(2); }}>2</Button>
-            <Button onClick={() => { this.checkNumber(3); }}>3</Button>
-            <Button onClick={() => { this.mathOperators("/"); }}>/</Button>
+            <Button onClick={() => { this.checkNumber(1); }}><h1>1</h1></Button>
+            <Button onClick={() => { this.checkNumber(2); }}><h1>2</h1></Button>
+            <Button onClick={() => { this.checkNumber(3); }}><h1>3</h1></Button>
+            <Button onClick={() => { this.mathOperators("/"); }}><h1>/</h1></Button>
           </ButtonGroup>
         </Grid>
 
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.checkNumber(4); }}>4</Button>
-            <Button onClick={() => { this.checkNumber(5); }}>5</Button>
-            <Button onClick={() => { this.checkNumber(6); }}>6</Button>
-            <Button onClick={() => { this.mathOperators("*"); }}>*</Button>
+            <Button onClick={() => { this.checkNumber(4); }}><h1>4</h1></Button>
+            <Button onClick={() => { this.checkNumber(5); }}><h1>5</h1></Button>
+            <Button onClick={() => { this.checkNumber(6); }}><h1>6</h1></Button>
+            <Button onClick={() => { this.mathOperators("*"); }}><h1>*</h1></Button>
           </ButtonGroup>
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.checkNumber(7); }}>7</Button>
-            <Button onClick={() => { this.checkNumber(8); }}>8</Button>
-            <Button onClick={() => { this.checkNumber(9); }}>9</Button>
-            <Button onClick={() => { this.mathOperators("--"); }}>--</Button>
+            <Button onClick={() => { this.checkNumber(7); }}><h1>7</h1></Button>
+            <Button onClick={() => { this.checkNumber(8); }}><h1>8</h1></Button>
+            <Button onClick={() => { this.checkNumber(9); }}><h1>9</h1></Button>
+            <Button onClick={() => { this.mathOperators("-"); }}><h1>-</h1></Button>
           </ButtonGroup>
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.checkNumber(0); }}>0</Button>
-            <Button onClick={() => { this.clear(); }}>C</Button>
-            < Button onClick={() => { this.mathOperators("+"); }}>+</Button>
-            < Button onClick={() => { this.result(); }}>=</Button>
+            <Button onClick={() => { this.checkNumber(0); }}><h1>0</h1></Button>
+            <Button onClick={() => { this.clear(); }}><h2>C</h2></Button>
+            < Button onClick={() => { this.mathOperators("+"); }}><h1>+</h1></Button>
+            < Button onClick={() => { this.result(); }}><h1>=</h1></Button>
           </ButtonGroup>
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.sin();}}>SIN</Button>
-            < Button onClick={() => { this.cosine(); }}>COS</Button>
+            <Button onClick={() => { this.sin();}}><h1>SIN</h1></Button>
+            < Button onClick={() => { this.cosine(); }}><h1>COS</h1></Button>
           </ButtonGroup>
         </Grid>
-
       </div>
     );
   }
