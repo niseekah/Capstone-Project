@@ -180,6 +180,7 @@ class App extends React.Component {
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick={() => { this.sin();}}>SIN</Button>
             < Button onClick={() => { this.cosine(); }}>COS</Button>
+            < Button onClick={() => { this.tangent(); }}>TAN</Button>
           </ButtonGroup>
         </Grid>
 
