@@ -54,19 +54,24 @@ class App extends React.Component {
       answer: Math.cos(this.state.num1),
       display: this.state.display + this.state.answer
     })
+  }
     
   async tangent() {
       await this.setState({
         display: "tan(" + this.state.num1 + ")"
       })
       this.setState({
+      
         answer: Math.tan(this.state.num1),
         display: this.state.display + this.state.answer
-      })
-  
+    })
+    }
 // The result() function is created to display the result number
-  result()
-    {
+  result(){
+
+  
+
+    
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
     if (this.state.currentOperation === "+") {
