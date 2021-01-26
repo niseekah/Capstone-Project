@@ -52,14 +52,28 @@ class App extends React.Component {
       display: "sin"
     })
   }
-  cosine() {
-    console.log(Math.cos(this.state.num1))
-  }
+  async cosine() {
+    await this.setState({
+      display: "cos(" + this.state.num1 + ")"
+    })
+    this.setState({
+      answer: Math.cos(this.state.num1),
+      display: this.state.display + this.state.answer
+    })
+    
   async tangent() {
-    Math.tan()
-  }
-  // The result() function is created to display the result number
-  result() {
+  
+      await this.setState({
+        display: "tan(" + this.state.num1 + ")"
+      })
+      this.setState({
+        answer: Math.tan(this.state.num1),
+        display: this.state.display + this.state.answer
+      })
+  
+// The result() function is created to display the result number
+  result()
+    {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
     if (this.state.currentOperation === "+") {
