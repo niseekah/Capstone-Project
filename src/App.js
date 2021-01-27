@@ -123,7 +123,6 @@ class App extends React.Component {
     let net = this.state.num1
     if (this.state.negative === "-") {
       net = -Math.abs(this.state.num1)
-
     }
 
     if (this.state.currentOperation === "+") {
