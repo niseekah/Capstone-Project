@@ -14,6 +14,7 @@ class App extends React.Component {
       num1: 0,
       storeNum: 0,
       currentOperation: "",
+      negative: "",
       display: "",
       answer: 0,
     };
@@ -50,7 +51,20 @@ class App extends React.Component {
           this.setState({ display: "tan(" + this.state.num1 + ")" });
         }
       );
-    } else {
+    }
+
+    if (this.state.negative === "(-)") {
+      this.setState(
+        {
+          num1: 10 * this.state.num1 + number
+        },
+        () => {
+          this.setState({ display: this.state.num1 });
+        }
+      );
+    }
+
+    else {
       this.setState({
         display: this.state.display + number,
         num1: 10 * this.state.num1 + number,
@@ -60,12 +74,23 @@ class App extends React.Component {
 
   //mathOperators() stores in the current num1 number and reset num1 to 0.
   mathOperators(opera) {
-    this.setState({
-      display: this.state.display + opera,
-      storeNum: this.state.num1,
-      currentOperation: opera,
-      num1: 0,
-    });
+    if (this.state.negative === "-") {
+      this.setState({
+        display: this.state.display + opera,
+        storeNum: -Math.abs(this.state.num1),
+        currentOperation: opera,
+        num1: 0,
+        negative: ""
+      })
+    }
+    else {
+      this.setState({
+        display: this.state.display + opera,
+        storeNum: this.state.num1,
+        currentOperation: opera,
+        num1: 0,
+      });
+    }
   }
   sin() {
     this.setState({
@@ -86,23 +111,34 @@ class App extends React.Component {
       display: "tan",
     });
   }
+  negative() {
+    this.setState({
+      negative: "-",
+    }, () => {this.setState({display: this.state.display + this.state.negative})});
+  }
   // The result() function is created to display the result number
   result() {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
+    let net = this.state.num1
+    if (this.state.negative === "-") {
+      net = -Math.abs(this.state.num1)
+
+    }
+
     if (this.state.currentOperation === "+") {
       this.setState({
-        answer: this.state.storeNum + this.state.num1,
+        answer: this.state.storeNum + net,
       }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
     }
     else if (this.state.currentOperation === "-") {
       this.setState({
-        answer: this.state.storeNum - this.state.num1,
+        answer: this.state.storeNum - net,
       }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
     }
     else if (this.state.currentOperation === "*") {
       this.setState({
-        answer: this.state.storeNum * this.state.num1,
+        answer: this.state.storeNum * net,
       }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
     }
 
@@ -111,14 +147,14 @@ class App extends React.Component {
         return "undefined";
       }
       this.setState({
-        answer: this.state.storeNum / this.state.num1,
+        answer: this.state.storeNum / net,
       }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
     }
 
     else if (this.state.currentOperation === "sin") {
       this.setState(
         {
-          answer: Math.sin(this.state.num1),
+          answer: Math.sin(net),
         },
         () => {
           this.setState({
@@ -126,11 +162,11 @@ class App extends React.Component {
           });
         }
       );
-    } 
+    }
     else if (this.state.currentOperation === "cos") {
       this.setState(
         {
-          answer: Math.cos(this.state.num1),
+          answer: Math.cos(net),
         },
         () => {
           this.setState({
@@ -138,11 +174,11 @@ class App extends React.Component {
           });
         }
       );
-    } 
+    }
     else if (this.state.currentOperation === "tan") {
       this.setState(
         {
-          answer: Math.tan(this.state.num1),
+          answer: Math.tan(net),
         },
         () => {
           this.setState({
@@ -150,7 +186,7 @@ class App extends React.Component {
           });
         }
       );
-    } 
+    }
     else {
       console.log("Err");
     }
@@ -164,6 +200,7 @@ class App extends React.Component {
       currentOperation: "",
       display: "",
       answer: 0,
+      negative: ""
     });
   }
 
@@ -208,9 +245,10 @@ class App extends React.Component {
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.sin(); }}><h1>SIN</h1></Button>
-            < Button onClick={() => { this.cosine(); }}><h1>COS</h1></Button>
-            < Button onClick={() => { this.tangent(); }}><h1>TAN</h1></Button>
+            <Button onClick={() => { this.sin(); }}><h2>SIN</h2></Button>
+            < Button onClick={() => { this.cosine(); }}><h2>COS</h2></Button>
+            < Button onClick={() => { this.tangent(); }}><h2>TAN</h2></Button>
+            < Button onClick={() => { this.negative(); }}><h2>(-)</h2></Button>
           </ButtonGroup>
         </Grid>
       </div>
