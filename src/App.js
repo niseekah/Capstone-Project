@@ -236,8 +236,8 @@ class App extends React.Component {
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.checkNumber(0); }}><h1>0</h1></Button>
             <Button onClick={() => { this.clear(); }}><h2>C</h2></Button>
+            <Button onClick={() => { this.checkNumber(0); }}><h1>0</h1></Button>
             < Button onClick={() => { this.mathOperators("+"); }}><h1>+</h1></Button>
             < Button onClick={() => { this.result(); }}><h1>=</h1></Button>
           </ButtonGroup>
