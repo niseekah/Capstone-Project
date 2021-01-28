@@ -236,7 +236,7 @@ class App extends React.Component {
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.clear(); }}><h2>C</h2></Button>
+            <Button onClick={() => { this.clear(); }}><h1>C</h1></Button>
             <Button onClick={() => { this.checkNumber(0); }}><h1>0</h1></Button>
             < Button onClick={() => { this.mathOperators("+"); }}><h1>+</h1></Button>
             < Button onClick={() => { this.result(); }}><h1>=</h1></Button>
@@ -244,10 +244,10 @@ class App extends React.Component {
         </Grid>
         <Grid class="space">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button onClick={() => { this.sin(); }}><h2>SIN</h2></Button>
-            < Button onClick={() => { this.cosine(); }}><h2>COS</h2></Button>
-            < Button onClick={() => { this.tangent(); }}><h2>TAN</h2></Button>
-            < Button onClick={() => { this.negative(); }}><h2>(-)</h2></Button>
+            <Button onClick={() => { this.sin(); }}><h3>SIN</h3></Button>
+            < Button onClick={() => { this.cosine(); }}><h3>COS</h3></Button>
+            < Button onClick={() => { this.tangent(); }}><h3>TAN</h3></Button>
+            < Button onClick={() => { this.negative(); }}><h3>(-)</h3></Button>
           </ButtonGroup>
         </Grid>
       </div>
