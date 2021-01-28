@@ -2,22 +2,44 @@
 {
   flex-grow: 1;
   padding: 2px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+button.MuiButton-root:hover {
+  text-decoration: none;
+  background-color: lightgrey;
 }
 
 button.MuiButton-containedPrimary
 {
   margin: 5px;
-  padding: 5vw;
+  padding: 3.6vw;
   height: 2vw;
+  background-color: grey;
+}
+
+button.MuiButtonGroup-grouped {
+  min-width: 14vw;
+}
+
+h1{
+color: white;
+font-size: 14px;
+}
+
+h3{
+  
+  font-size: 13px;
+  color: white;
 }
 
 .displayField
 {
-  height: 10vw;
+  height: 6vw;
   width: auto;
   font-size: 5vw;
   text-align: center;
+  color: white;
   margin: auto;
-  background-color:cornflowerblue;
-}
+  background-color: rgb(26, 26, 26);}
