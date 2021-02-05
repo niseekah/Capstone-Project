@@ -187,7 +187,8 @@ class App extends React.Component {
       currentOperation: "",
       display: "",
       answer: 0,
-      negative: ""
+      negative: "",
+      calcList: []
     });
   }
 
