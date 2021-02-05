@@ -17,6 +17,7 @@ class App extends React.Component {
       negative: "",
       display: "",
       answer: 0,
+      calcList: []
     };
   }
   // CheckNumber() function add all numbers press to form one digit number
@@ -72,6 +73,8 @@ class App extends React.Component {
     }
   }
 
+ 
+
   //mathOperators() stores in the current num1 number and reset num1 to 0.
   mathOperators(opera) {
     if (this.state.negative === "-") {
@@ -83,10 +86,18 @@ class App extends React.Component {
         negative: ""
       })
     }
+    // calcList: [...calcList, ...math] is taking whatever is in the calcList array and the math array and
+    // putting it into the calcList array. the three dots (...) are a spread operator
     else {
+      let math = []
+      // Hers's the problem
+      math.push(this.state.num1);
+      math.push(opera);
+      // Hers's the problem
       this.setState({
         display: this.state.display + opera,
         storeNum: this.state.num1,
+        calcList: [...this.state.calcList, ...math],
         currentOperation: opera,
         num1: 0,
       });
@@ -120,75 +131,52 @@ class App extends React.Component {
   result() {
     // using an else/if statements to check if currentOperation has a certain math operator
     // then use that math operator to get the result number and display the number.
-    let net = this.state.num1
-    if (this.state.negative === "-") {
-      net = -Math.abs(this.state.num1)
+  this.state.calcList.push(this.state.num1);
+  console.log( "num1 is " + this.state.num1);
+  let i;
+  let dig = null 
+  let math 
+  let digTwo = 0
+  console.log("array list " + this.state.calcList)
+  while(this.state.calcList.length != 0)
+  {
+    if(dig === null)
+    {
+      dig = this.state.calcList.shift()
     }
-
-    if (this.state.currentOperation === "+") {
-      this.setState({
-        answer: this.state.storeNum + net,
-      }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
-    }
-    else if (this.state.currentOperation === "-") {
-      this.setState({
-        answer: this.state.storeNum - net,
-      }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
-    }
-    else if (this.state.currentOperation === "*") {
-      this.setState({
-        answer: this.state.storeNum * net,
-      }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
-    }
-
-    else if (this.state.currentOperation === "/") {
-      if (this.state.num1 === 0) {
-        return "undefined";
+    else
+    {
+      math = this.state.calcList.shift()
+      console.log("math = "+ math)
+      digTwo = this.state.calcList.shift() 
+      console.log("digTwo = "+ digTwo)
+      if(math == "+")
+      {
+        dig = dig + digTwo
+        console.log(dig)
       }
-      this.setState({
-        answer: this.state.storeNum / net,
-      }, () => { this.setState({ display: this.state.display + " = " + this.state.answer }) })
+      else if (math == "-")
+      {
+        dig = dig - digTwo
+        console.log(dig)
+      }
+      else if (math == "*")
+      {
+        dig = dig * digTwo
+      }
+      else if (math == "/")
+      {
+        dig = dig / digTwo
+      }
     }
+  }
+  console.log(dig);
 
-    else if (this.state.currentOperation === "sin") {
-      this.setState(
-        {
-          answer: Math.sin(net),
-        },
-        () => {
-          this.setState({
-            display: this.state.display + " = " + this.state.answer,
-          });
-        }
-      );
-    }
-    else if (this.state.currentOperation === "cos") {
-      this.setState(
-        {
-          answer: Math.cos(net),
-        },
-        () => {
-          this.setState({
-            display: this.state.display + " = " + this.state.answer,
-          });
-        }
-      );
-    }
-    else if (this.state.currentOperation === "tan") {
-      this.setState(
-        {
-          answer: Math.tan(net),
-        },
-        () => {
-          this.setState({
-            display: this.state.display + " = " + this.state.answer,
-          });
-        }
-      );
-    }
-    else {
-      console.log("Err");
-    }
+  this.setState({
+    answer: dig,
+    display: this.state.display + " = " + dig
+  })
+
   }
 
   // The clear() function is created to clear the displayed screen
@@ -256,3 +244,34 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+
+// ADD three or more numbers to do math operations with
+// I would want to put each number in a stack data structures
+// Example: 45+23-12
+// 45 -> stack[]
+// +  -> stack[]
+// 23 -> stack[]
+// ......etc 
+//stack[45,"+",23,"-","12"]
+//result function 
+// use a for loop to loop through the stack
+// check to see if the first element is a number and store it into a variable num1
+//  if the second element is a math operation either add, subtract or divide 
+//  and if the next element is a number either add, subtract, or divide
+//  store the results in storeNum
+//  
+
+
+
+/*
+ stack[45,"+",23,"-","12"]
+ if stack[0] is a number
+  num1 = stack[1]
+ loop i = 1
+ if stack[i] is a math operator
+  if stack[i+1] is a number
+    storeNum = storeNum +, -, /, or * num1
+ */
