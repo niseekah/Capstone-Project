@@ -1,0 +1,70 @@
+// The result() function is created to calculate and display the result number
+  result() {
+    // using an else/if statements to check if currentOperation has a certain math operator
+    // then use that math operator to get the result number and display the number.
+
+    // this.setState({
+      // calcList: this.state.num1,
+    // });
+    this.state.calcList.push(this.state.num1);
+    console.log( "num1 is " + this.state.num1);
+  
+    let dig = null 
+    let math 
+    let digTwo = 0
+    console.log("array list " + this.state.calcList)
+    // example: calcList[2,+,9,*,3]
+    // calcList[2+27]
+    // claCList[29]
+    while(this.state.calcList.length !== 0)
+    {
+      if(dig === null)
+      {
+        dig = this.state.calcList.shift()
+      }
+      else if (this.state.currentOperation === 'sin')
+      {
+        dig = this.state.calcList.shift()
+      }
+      else if (this.state.currentOperation === 'cos')
+      {
+        dig = this.state.calcList.shift()
+      }
+      else if (this.state.currentOperation === 'tan')
+      {
+        dig = this.state.calcList.shift()
+      }
+      else
+      {
+        math = this.state.calcList.shift()
+        console.log("math = "+ math)
+        digTwo = this.state.calcList.shift() 
+        console.log("digTwo = "+ digTwo)
+        if(math === "+")
+        {
+          dig = dig + digTwo
+          console.log(dig)
+        }
+        else if (math === "-")
+        {
+          dig = dig - digTwo
+          console.log(dig)
+        }
+        else if (math === "*")
+        {
+          dig = dig * digTwo
+        }
+        else if (math === "/")
+        {
+          dig = dig / digTwo
+        }
+      }
+    }
+    console.log(dig);
+
+    this.setState({
+      answer: dig,
+      display: this.state.display + " = " + dig
+    })
+    console.log( "calcList is " + this.state.calcList);
+  }
